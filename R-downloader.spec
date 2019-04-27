@@ -4,7 +4,7 @@
 #
 Name     : R-downloader
 Version  : 0.4
-Release  : 8
+Release  : 9
 URL      : https://cran.r-project.org/src/contrib/downloader_0.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/downloader_0.4.tar.gz
 Summary  : Download Files over HTTP and HTTPS
