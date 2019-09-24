@@ -4,20 +4,22 @@
 #
 Name     : R-downloader
 Version  : 0.4
-Release  : 12
+Release  : 13
 URL      : https://cran.r-project.org/src/contrib/downloader_0.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/downloader_0.4.tar.gz
 Summary  : Download Files over HTTP and HTTPS
 Group    : Development/Tools
 License  : GPL-2.0
+Requires: R-digest
+BuildRequires : R-digest
 BuildRequires : buildreq-R
 
 %description
-downloader
-==========
-This package provides a wrapper for the download.file function, making it possible to download files over https on Windows, Mac OS X, and other Unix-like platforms.
-The RCurl package provides this functionality (and much more) but can be difficult to install because it must be compiled with external dependencies.
-This package has no external dependencies, so it is much easier to install.
+making it possible to download files over HTTPS on Windows, Mac OS X, and
+    other Unix-like platforms. The 'RCurl' package provides this functionality
+    (and much more) but can be difficult to install because it must be compiled
+    with external dependencies. This package has no external dependencies, so
+    it is much easier to install.
 
 %prep
 %setup -q -c -n downloader
@@ -26,13 +28,13 @@ This package has no external dependencies, so it is much easier to install.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552752489
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1569287283
 
 %install
-export SOURCE_DATE_EPOCH=1552752489
+export SOURCE_DATE_EPOCH=1569287283
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -61,12 +63,12 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  downloader || :
+R CMD check --no-manual --no-examples --no-codoc downloader || :
 
 
 %files
