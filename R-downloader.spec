@@ -4,7 +4,7 @@
 #
 Name     : R-downloader
 Version  : 0.4
-Release  : 17
+Release  : 18
 URL      : https://cran.r-project.org/src/contrib/downloader_0.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/downloader_0.4.tar.gz
 Summary  : Download Files over HTTP and HTTPS
@@ -13,32 +13,32 @@ License  : GPL-2.0
 Requires: R-digest
 BuildRequires : R-digest
 BuildRequires : buildreq-R
-BuildRequires : util-linux
 
 %description
-downloader
-==========
-This package provides a wrapper for the download.file function, making it possible to download files over https on Windows, Mac OS X, and other Unix-like platforms.
-The RCurl package provides this functionality (and much more) but can be difficult to install because it must be compiled with external dependencies.
-This package has no external dependencies, so it is much easier to install.
+making it possible to download files over HTTPS on Windows, Mac OS X, and
+    other Unix-like platforms. The 'RCurl' package provides this functionality
+    (and much more) but can be difficult to install because it must be compiled
+    with external dependencies. This package has no external dependencies, so
+    it is much easier to install.
 
 %prep
 %setup -q -c -n downloader
+cd %{_builddir}/downloader
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571819544
+export SOURCE_DATE_EPOCH=1589530785
 
 %install
-export SOURCE_DATE_EPOCH=1571819544
+export SOURCE_DATE_EPOCH=1589530785
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
